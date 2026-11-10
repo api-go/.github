@@ -173,7 +173,7 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 核心微服务框架。
 - **API**: `Start`, `AsyncStart`, `Host`, `Register`, `Restful`, `RegisterWebsocket`, `Static`, `Proxy`, `VerifyStruct`, `GetInjectT`
 
-### go/gateway v1.5.26
+### go/gateway v1.5.27
 - **Host 回收站**：删除保留完整草稿/发布/历史与加密凭据；恢复原发布配置并保留独立草稿，冲突拒绝、修订号递增；仅回收站可永久删除。复用共享状态 CAS、同步、重启/灾后恢复、脱敏与按 Host 授权 API。
 - **ACL**：Scope 保护范围 + Allow 放行条件，范围内默认拒绝、放行 OR、重叠范围 AND；规则摘要列表与独立编辑弹窗、中立的空 ACL 路径、ACL/限流自动摘要与稳定 ID。NewACL / ACL.Evaluate / ACLRule / ACLGrant / ACLDecision，兼容旧开发规则。Gateway 保持纯 L7。
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。

@@ -176,7 +176,7 @@ Core microservice framework.
 - **Ingress**: `Handler`, `SetRequestGate`, `SetClientIPPolicy`, `RelayClientIP`, `PrepareHostPolicy`, `ReplaceHostPolicies`, `SetCertificateProvider`; request-pinned managed policies and explicit proxy CIDR trust. Legacy internal relay remains the default.
 - **API**: `Start`, `AsyncStart`, `Host`, `Register`, `Restful`, `RegisterWebsocket`, `Static`, `Proxy`, `VerifyStruct`, `GetInjectT`
 
-### go/gateway v1.5.26
+### go/gateway v1.5.27
 - **Host trash**: Delete moves complete records into shared persistent trash; restore reactivates the original publication while preserving drafts, with conflict checks and monotonic revisions. Purge only accepts trashed records. Redacted listings, encrypted credentials, CAS convergence, restart/recovery, scoped APIs and explicit confirmations.
 - **ACL**: Scope + Allow alternatives, default deny within scope, OR grants and AND overlapping scopes; summary lists with transactional rule dialogs, neutral empty ACL paths, generated ACL/rate summaries and stable IDs. NewACL / ACL.Evaluate / ACLRule / ACLGrant / ACLDecision; legacy development policies remain compatible. Gateway remains L7-only.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
