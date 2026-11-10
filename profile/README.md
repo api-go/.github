@@ -216,8 +216,6 @@ All 16 affected modules are released and remote-tag verified. Every downstream g
 
 ## Web
 
-GitHub source releases are available. npm publication under `@api-go` is pending.
-
-- [state](https://github.com/api-go/state) — `@api-go/state`, GitHub v1.0.29
-- [bootstrap](https://github.com/api-go/bootstrap) — `@api-go/bootstrap`, GitHub v1.0.16
-- [ui](https://github.com/api-go/ui) — `@api-go/ui`, GitHub v1.0.12
+- [state](https://github.com/api-go/state) — [@api-go/state](https://www.npmjs.com/package/@api-go/state), v1.0.29
+- [bootstrap](https://github.com/api-go/bootstrap) — [@api-go/bootstrap](https://www.npmjs.com/package/@api-go/bootstrap), v1.0.16
+- [ui](https://github.com/api-go/ui) — [@api-go/ui](https://www.npmjs.com/package/@api-go/ui), v1.0.12
