@@ -192,7 +192,7 @@ High-performance, event-driven dynamic API gateway.
 - **Alerts**: encrypted DingTalk/WeCom/Feishu channels, native signatures through API, failure thresholds, repeat reminders, quiet hours and standalone HTTP low-code with a DingTalk example. Real OA delivery remains environment-specific; signing/receipts use local receiver tests.
 - **Notifications and WebSocket**: Redis subscriptions follow application lifecycle; normal requests retain HTTP/2/H2C; WebSocket supports negotiated H2 and H1 fallback with preserved handshake responses.
 - **Dependencies**: released Service v1.5.52, Discover v1.5.21, HTTP v1.5.16, API v1.5.21 and JS v1.5.17; no local replacements.
-- **Library**: `github.com/api-go/gateway/core`; existing certificate, quota, password and configuration APIs remain supported; CLI stays at module root. Full API reference: [中文](https://github.com/api-go/gateway/src/branch/main/README.md), [English](https://github.com/api-go/gateway/src/branch/main/README.en.md).
+- **Library**: `github.com/api-go/gateway/core`; existing certificate, quota, password and configuration APIs remain supported; CLI stays at module root. Full API reference: [中文](https://github.com/api-go/gateway/blob/main/README.md), [English](https://github.com/api-go/gateway/blob/main/README.en.md).
 - **API**: `NewGatewayApp`, `GatewayApp.Start`, `GatewayApp.Stop`, `GatewayApp.Reload`, `GatewayApp.Status`, `NewManager`, `Manager.AdminHandler`, `Manager.SaveDraft`, `Manager.Publish`, `Manager.Rollback`, `Manager.Delete`, `Manager.Trash`, `Manager.Restore`, `Manager.Purge`, `DeletedHost`, `Manager.CheckHost`, `Manager.TestUpstream`, `Manager.RegistryServices`, `ReadRegistryServices`, `Manager.MonitorStatuses`, `Manager.MonitorHistory`, `Manager.MonitorMatrix`, `Manager.MonitorTick`, `Manager.RunMonitorCheck`, `Manager.SendAlert`, `Manager.SyncAffinity`, `Manager.AffinityStatus`, `AffinityConfig`, `AffinityRule`, `AffinityMapping`, `PruneGatewayLogs`
 
 ## RFC 8441 WebSocket — HTTP v1.5.14 / Service v1.5.48 / Gateway v1.5.20
@@ -219,3 +219,11 @@ All 16 affected modules are released and remote-tag verified. Every downstream g
 - [state](https://github.com/api-go/state) — [@api-go/state](https://www.npmjs.com/package/@api-go/state), v1.0.29
 - [bootstrap](https://github.com/api-go/bootstrap) — [@api-go/bootstrap](https://www.npmjs.com/package/@api-go/bootstrap), v1.0.16
 - [ui](https://github.com/api-go/ui) — [@api-go/ui](https://www.npmjs.com/package/@api-go/ui), v1.0.12
+
+## Unreleased compressed-log integration — 2026-11-12
+
+Local development changes; published versions above remain unchanged. Log writes bounded compressed blocks with a per-file `.dict`; both files must be retained together. Read through `logv` or the embedded Starter `log`/`logv` commands; generic gzip readers do not restore the log records. `log` defaults to `-tail 100 -f`, and supports `-head`, `-tail`, `-cat`, `-json` and `-raw`. `Config.NoCompress` retains plain-text output.
+
+Gateway enables compact ProxyLog for proxy routes while preserving RequestLog for static files and other local requests. Service keeps full request logging by default; Discover emits a compact outbound CallLog with the same request trace. Failed proxy calls include bounded, sanitized details. Timer concurrency and shutdown fixes support live following.
+
+Affected consumers use explicit local development replacements pending acceptance and release in dependency order. Tests and benchmarks passed; archive/follow concurrency tests passed under the race detector. GitHub remotes and indexed published tags were verified. No new versions have been tagged or pushed.

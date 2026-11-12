@@ -189,7 +189,7 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 - **报警**：加密钉钉/企微/飞书通道、API 原生签名、连续失败阈值、重复提醒、勿扰和独立 HTTP 低代码，提供钉钉示例；签名与回执通过本地接收端验证，真实 OA 投递需按环境验证。
 - **通知与 WebSocket**：Redis 订阅随生命周期启停；普通请求保持 HTTP/2/H2C，WebSocket 支持 H2 协商及 H1 回退并保留握手响应。
 - **依赖**：正式 Service v1.5.52、Discover v1.5.21、HTTP v1.5.16、API v1.5.21、JS v1.5.17，无本地 replace。
-- **库**：`github.com/api-go/gateway/core`；既有证书、限流、密码与配置接口继续支持，根目录保留 CLI。完整 API：[中文](https://github.com/api-go/gateway/src/branch/main/README.md)、[English](https://github.com/api-go/gateway/src/branch/main/README.en.md)。
+- **库**：`github.com/api-go/gateway/core`；既有证书、限流、密码与配置接口继续支持，根目录保留 CLI。完整 API：[中文](https://github.com/api-go/gateway/blob/main/README.md)、[English](https://github.com/api-go/gateway/blob/main/README.en.md)。
 - **API**: `NewGatewayApp`, `GatewayApp.Start`, `GatewayApp.Stop`, `GatewayApp.Reload`, `GatewayApp.Status`, `NewManager`, `Manager.AdminHandler`, `Manager.SaveDraft`, `Manager.Publish`, `Manager.Rollback`, `Manager.Delete`, `Manager.Trash`, `Manager.Restore`, `Manager.Purge`, `DeletedHost`, `Manager.CheckHost`, `Manager.TestUpstream`, `Manager.RegistryServices`, `ReadRegistryServices`, `Manager.MonitorStatuses`, `Manager.MonitorHistory`, `Manager.MonitorMatrix`, `Manager.MonitorTick`, `Manager.RunMonitorCheck`, `Manager.SendAlert`, `Manager.SyncAffinity`, `Manager.AffinityStatus`, `AffinityConfig`, `AffinityRule`, `AffinityMapping`, `PruneGatewayLogs`
 
 ## RFC 8441 WebSocket：HTTP v1.5.14 / Service v1.5.48 / Gateway v1.5.20
@@ -216,3 +216,11 @@ Default addressing restores the existing controlled-service Request-ID relay con
 - [state](https://github.com/api-go/state) — [@api-go/state](https://www.npmjs.com/package/@api-go/state), v1.0.29
 - [bootstrap](https://github.com/api-go/bootstrap) — [@api-go/bootstrap](https://www.npmjs.com/package/@api-go/bootstrap), v1.0.16
 - [ui](https://github.com/api-go/ui) — [@api-go/ui](https://www.npmjs.com/package/@api-go/ui), v1.0.12
+
+## 未发布：压缩日志联动 — 2026-11-12
+
+以下为本地开发改动，上文已发布版本保持不变。Log 实时写入有界压缩块，每个日志文件配套一个 `.dict`；归档、迁移和删除须成对处理。通过 `logv` 或 Starter 内置 `log`/`logv` 命令恢复记录，不提供通用 gzip 工具读取保证。`log` 默认 `-tail 100 -f`，支持 `-head`、`-tail`、`-cat`、`-json`、`-raw`；`Config.NoCompress` 可保留明文输出。
+
+Gateway 的代理路由使用精简 ProxyLog；静态文件等本地请求保留 RequestLog。Service 默认继续完整请求日志，Discover 的出站 CallLog 续传同一请求链路标识。失败代理附带有界、脱敏详情。Timer 修复并发调度和启停问题，支持持续跟随。
+
+相关调用方当前显式使用本地开发 replace，验收后按依赖顺序发布。测试、基准与压缩日志/跟随竞态验证通过；GitHub 远端和索引中的已发布 tag 已核验。本次未创建新 tag、未推送。
