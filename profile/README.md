@@ -25,7 +25,7 @@ Versions and APIs below refer to released tags; local unreleased changes are not
 Registry for JS modules with unsafe method tracking.
 - **API**: `Register`, `GetModules`, `NewContext`, `Get`, `IsSafeMode`, `MakeError`
 
-### go/timer v1.5.1
+### go/timer v1.5.2
 Time stream control and retries.
 - **API**: `Retry`, `Start`, `WithBackoff`, `WithMaxRetries`, `NewDebouncer`, `NewThrottler`, `NewTimeWheel`, `RunTimeout`, `Tracker`
 
@@ -41,7 +41,7 @@ High-concurrency random generation.
 Standard and integer encoding.
 - **API**: `Hex`, `UnHex`, `Base64`, `UnBase64`, `Base64Raw`, `URLBase64`, `UnURLBase64`, `URLBase64Raw`, `URLEncode`, `UnURLEncode`, `HTMLEscape`, `HTMLUnescape`, `UTF8Valid`, `NewIntEncoder`, `EncodeInt`, `AppendInt`, `DecodeInt`, `ExchangeInt`, `FillInt`, `HashInt`, `FoldInt`, `SortJoin`
 
-### go/js v1.5.18
+### go/js v1.5.19
 Named-function validation uses parsed syntax, preserving matching text in literals and comments.
 Lightweight low-code engine based on goja with automatic bridging and safe mode.
 - **API**: `Define`, `Call`, `CallContext`, `Doc`, `CheckVersion`, `FuncList`, `NewPool`, `Start`, `Stop`, `Status`
@@ -97,41 +97,43 @@ Secret management and cross-language encryption tool.
 - **Exports and storage**: preserve 12–16 byte IVs in all five languages; Go directly sets default AES (register observers during package variable initialization). Strict keystore authentication, confined paths, exclusive key creation and Unix 0600 secret files.
 - **Library additions**: `RemoveKeystore`, `KeySet.SourceFingerprint`. Windows agent/library cross-compile; the CLI remains blocked by shell v1.5.8 platform isolation.
 
-### go/log v1.5.18
+### go/log v1.5.19
+- **Query API**: `QueryOptions`, `LogPath`, `DefaultConfig`, `Query`, `QueryFile`, `FormatStream`, `FormatArchiveStream`, `RunCommand`, `FileWriter.Err`, `Config.NoCompress`.
 Meta-driven asynchronous logging.
 - **API**: `Debug`, `Info`, `Warning`, `Error`, `As`, `New`, `NewLogger`, `SetDefaultConfig`, `SetDefaultName`, `Viewable`, `ToJSON`, `GetEntry`, `WithEntry`, `RegisterType`, `GetMeta`, `LoadMeta`, `SetMetaFilePath`, `Marshal`, `RegisterWriterMaker`, `AddStdLogFilter`, `SetStdLogOutput`, `GetDroppedLogs`, `WriterService.Start`, `WriterService.Stop`, `WriterService.Status`
-- **File output**: pure JSON arrays for both fixed and rotated files; empty `SplitTag` preserves the filename. Synchronous flush before service start and after stop; asynchronous routing while running.
+- **File output**: defaults to compressed .gz/.dict pairs; NoCompress=true retains plain JSON arrays. Empty SplitTag uses a fixed file, otherwise files split by the tag. Synchronous flush outside service lifetime; buffered asynchronous writes while running.
 
-### go/http v1.5.17
+### go/http v1.5.18
 - **External address**: `ExternalAddressPolicy`, `NewExternalAddressResolver`, `ExternalAddressResolver.Prepare`, `RequestExternalAddress`, `PreparedExternalAddress`, `ExternalAddress.IsHTTPS/SameOrigin/RelayHeaders`. Default controlled-service Request-ID relay; optional Mode direct/trusted and direct-peer CIDRs. Paired single-value forwarding headers, pinned snapshots and structured Origin checks; Forwarded is unsupported. Request-ID is relay context, not authentication.
 - **JS request contract**: JS GET/DELETE retain response objects instead of entering the error-return slot; HTTP JS calls propagate cancellation and Multipart DELETE authorizes local files.
 - **WebSocket**: replace client WebSocket/WebSocketContext with Open/OpenContext, returning connection, handshake response and error; http.Header preserves multiple values. New Client.Clone, Client.WebSocketDialer and Client.SetWebSocketDialer support independent HTTP/1.1 dialing. Rejected bodies are capped and their lengths normalized.
 High-performance HTTP client.
 - **API**: `NewClient`, `NewClientH2C`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Do`, `DoContext`, `ManualDoContext`, `To`, `Open`, `OpenContext`, `Client.Clone`, `Client.WebSocketDialer`, `Client.SetWebSocketDialer`, `Client.SetWebSocketHTTP2`, `Client.SetWebSocketOptions`, `IsWebSocketRequest`, `UpgradeWebSocket`
 
-### go/mail v1.5.9
+### go/mail v1.5.10
 Lean and high-performance email client.
 - **API**: `Send`, `MustSend`, `Recv`, `MustRecv`, `New`, `MustNew`, `NewWithConfig`, `GetMailbox`, `ParseAddr`, `FormatAddr`
 
-### go/task v1.5.16
+### go/task v1.5.17
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Task scheduling and lifecycle management.
 - **API**: `Add`, `Scheduler.Start`, `Scheduler.Stop`, `Get`, `List`, `Remove`, `Run`, `WithPolicy`, `WithTimeout`, `NewScheduler`, `WithLogger`, `Logger`, `State`, `Snapshot`, `Disable`, `Enable`, `Config.FailureRetryDelay`, `Snapshot.RetryAt`
 - **Library**: `github.com/api-go/task/queue`: `Add`, `Fetch`, `FetchDecoded`, `Finish`, `AddAfter`, `Retry`, `Fail`, `Stats`, `PeekFailed`
 
-### go/redis v1.5.23
+### go/redis v1.5.24
 - **v1.5.22**: Redis.StartAsync provides nonblocking subscription recovery; Stop cancels reconnect waits; reset callbacks run outside locks after acknowledgement; PUBLISH reports zero-subscriber success.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Redis client with Pub/Sub.
 - **API**: `GetRedis`, `NewRedis`, `Do`, `Subscribe`, `PUBLISH`, `NewIDMaker`, `SetConfig`, `SetConfigIfAbsent`, `ZRangeByScore`
 - **ID restart handling**: named pool replacement discards cached reservations before allocation; retaining business data requires retained Redis counters.
 
-### go/starter v1.5.15
+### go/starter v1.5.16
+- **Built-in commands**: `log` (default -tail 100 -f) and `logv`; dispatched before lifecycle startup, custom AddCommand can override.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Service lifecycle and background management.
 - **API**: `Register`, `Start`, `Wait`, `SetAppInfo`, `SetUsage`, `AddCommand`, `AddRemoteCommand`, `OnStarting`, `OnStarted`, `OnStopping`, `OnStopped`
 
-### go/api v1.5.22
+### go/api v1.5.23
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Released patch: dynamic Action configuration stays out of provider payloads; inherited explicit payload defaults and caller fields remain intact.
 **WebSocket**: managed WebSocket uses HTTP OpenContext and closes handshake responses.
@@ -139,7 +141,7 @@ Third-party API orchestration engine.
 - Explicit CallOptions.Mode=mock uses declared test fixtures without networking; MockInputError identifies rejected test inputs; simulated results never imply delivery.
 - **API**: `Call`, `CallBy`, `Load`, `RegisterAction`, `RemoveAction`, `RegisterSigner`, `RegisterJSSigner`, `GetSigner`, `RemoveSigner`, `RegisterFilter`, `RegisterJSFilter`, `RemoveFilter`, `ParseActionYAML`, `PatchActionTokens`, `ConvertActionJSONToYAML`, `ModelConfigured`, `Action`, `CallOptions`, `MockInputError`, `Result`
 
-### go/db v1.5.25
+### go/db v1.5.26
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 - **API**: `GetDB`, `Sync`, `To`, `ToSlice`, `Insert`, `Replace`, `Update`, `Delete`, `Query`, `Exec`, `Begin`, `SetConfig`
@@ -148,7 +150,7 @@ Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 - Fixed CHAR/BPCHAR string results remove right storage padding; leading whitespace and VARCHAR/TEXT trailing spaces remain unchanged.
 - PostgreSQL schema reconciliation: reconcile generated ordinary/unique indexes atomically, including hashed long names; preserve constraint-backed and externally named indexes. No public API change.
 
-### go/discover v1.5.22
+### go/discover v1.5.23
 - **v1.5.21**：Go 及 Python/Node.js/Java/Ruby/常驻 PHP 异步启动恢复任务；Start 表示任务启动，IsRegistered/isRegistered 单独表示注册状态；周期快照补偿通知丢失，默认服务端健康未注册时 503。调用失败只影响本地评分，不删除全局注册。使用显式本地 Redis replace，已发布并升级下游。
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 - **External context**: `PrepareExternalRequest` explicitly prepares native ingress with HTTP policy. Normalized browser context is relayed separately from RPC destinations, credentials and TLS; raw legacy context is not trusted evidence. No default Origin relay.
@@ -159,7 +161,8 @@ Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 Service discovery and load balancing.
 - **API**: `Init`, `Start`, `Stop`, `Wait`, `EasyStart`, `NewCaller`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Caller.Open`, `Caller.OpenContext`, `Caller.WebSocketClient`, `AddExternalApp`, `GetAppNodes`, `SetNode`, `SetLoadBalancer`, `SetRoute`, `SetHTTPClient`, `Caller.DoRequest`, `HealthPath`, `HealthHandler`, `SetHealthHandler`, `Middleware`, `PrepareRequest`, `NodeInfo.State`
 
-### go/service v1.5.53
+### go/service v1.5.54
+- **Logging**: `ServiceConfig.CompactProxyLog` (default false), `ProxyLog`; service.Start/starter.Start expose embedded log/logv. Static and business RequestLog remain enabled.
 - **v1.5.22**: asynchronous Discover startup/cleanup integration; registration readiness is separate from worker startup. Development uses explicit Discover/Redis replacements; released and downstream upgraded.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 - **External addressing**: `ServiceConfig.ExternalAddress`, `WebServer.SetExternalAddressPolicy`, `Request.ExternalAddress`; pinned safe MakeUrl, HTTPS redirects and transparent proxy relay. Preparation precedes missing Request-ID generation; incoming internal IDs preserve outer addressing by default. Optional direct/trusted modes are independent of ClientIPPolicy; RPC targets and credentials are unchanged.
@@ -176,7 +179,7 @@ Core microservice framework.
 - **Ingress**: `Handler`, `SetRequestGate`, `SetClientIPPolicy`, `RelayClientIP`, `PrepareHostPolicy`, `ReplaceHostPolicies`, `SetCertificateProvider`; request-pinned managed policies and explicit proxy CIDR trust. Legacy internal relay remains the default.
 - **API**: `Start`, `AsyncStart`, `Host`, `Register`, `Restful`, `RegisterWebsocket`, `Static`, `Proxy`, `VerifyStruct`, `GetInjectT`
 
-### go/gateway v1.5.27
+### go/gateway v1.5.28
 - **Host trash**: Delete moves complete records into shared persistent trash; restore reactivates the original publication while preserving drafts, with conflict checks and monotonic revisions. Purge only accepts trashed records. Redacted listings, encrypted credentials, CAS convergence, restart/recovery, scoped APIs and explicit confirmations.
 - **ACL**: Scope + Allow alternatives, default deny within scope, OR grants and AND overlapping scopes; summary lists with transactional rule dialogs, neutral empty ACL paths, generated ACL/rate summaries and stable IDs. NewACL / ACL.Evaluate / ACLRule / ACLGrant / ACLDecision; legacy development policies remain compatible. Gateway remains L7-only.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
@@ -220,10 +223,12 @@ All 16 affected modules are released and remote-tag verified. Every downstream g
 - [bootstrap](https://github.com/api-go/bootstrap) — [@api-go/bootstrap](https://www.npmjs.com/package/@api-go/bootstrap), v1.0.16
 - [ui](https://github.com/api-go/ui) — [@api-go/ui](https://www.npmjs.com/package/@api-go/ui), v1.0.12
 
-## Unreleased compressed-log integration — 2026-11-12
+## Released compressed-log integration — 2026-11-12
 
-Local development changes; published versions above remain unchanged. Log writes bounded compressed blocks with a per-file `.dict`; both files must be retained together. Read through `logv` or the embedded Starter `log`/`logv` commands; generic gzip readers do not restore the log records. `log` defaults to `-tail 100 -f`, and supports `-head`, `-tail`, `-cat`, `-json` and `-raw`. `Config.NoCompress` retains plain-text output.
+Log v1.5.19 / Starter v1.5.16 / Discover v1.5.23 / Service v1.5.54 / Gateway v1.5.28 are released with verified GitHub tags. Updated consumers use published dependencies without development replacements; full tests and benchmarks passed with GOWORK=off.
 
-Gateway enables compact ProxyLog for proxy routes while preserving RequestLog for static files and other local requests. Service keeps full request logging by default; Discover emits a compact outbound CallLog with the same request trace. Failed proxy calls include bounded, sanitized details. Timer concurrency and shutdown fixes support live following.
+Logs default to independently compressed blocks and a per-file .dict. Retain, transfer and delete each pair together; generic zcat does not restore records. Read through logv or embedded log/logv commands. `./server log` defaults to -tail 100 -f; explicit -tail/-head/-cat selects the range before decoding. Pipe decoded output into grep/awk. -json restores object JSONL; -raw restores array JSONL. NoCompress opts into plaintext; legacy plaintext remains readable.
 
-Affected consumers use explicit local development replacements pending acceptance and release in dependency order. Tests and benchmarks passed; archive/follow concurrency tests passed under the race detector. GitHub remotes and indexed published tags were verified. No new versions have been tagged or pushed.
+Use service.Start() or starter.Start() for command dispatch; AsyncStart alone does not dispatch. Put business initialization in lifecycle Start hooks. Business services retain RequestLog, Discover retains outbound CallLog, and Gateway uses compact ProxyLog for proxies while preserving static RequestLog. Failures include bounded sanitized details; use the injected logger to preserve TraceID.
+
+Integration examples: [Service README](https://github.com/api-go/service/blob/v1.5.54/README.en.md). Verification: [TEST.md](../TEST.md).

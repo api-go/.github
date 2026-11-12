@@ -1,11 +1,27 @@
-# 压缩日志联动验证（未发布）
+# 实时压缩日志正式发布验证 — 2026-11-12
 
-2026-11-12，本地源码验证，GOWORK=off，调用方显式使用开发 replace。
+所有下列 tag 已推送并以 git ls-remote 核验到对应提交。调用方移除开发 replace，在 GOWORK=off 下使用正式依赖运行完整 go test -v ./... 与 go test -bench=. -benchtime=100ms ./...；Service/Gateway 设置 GODEBUG=http2xconnect=1。
 
-- timer、log：完整测试和基准通过；并发时间轮、压缩块、字典、损坏/截断恢复、并发追加和跨分割跟随通过竞态验证。
-- discover、service、starter、gateway 及直接日志调用方：完整测试和基准通过；Service/Gateway 使用 GODEBUG=http2xconnect=1 覆盖 H2 WebSocket。
-- CLI 实测：logv -tail 2、gateway log -cat、压缩 stdin 加 -dict 均恢复同一批记录。
-- 10,000 条样本无丢失：原文 3,698,890 字节；连续 gzip 127,008；独立 gzip 块 147,006；本方案数据 135,748 + 字典 4,859 = 140,607。字典收益依负载而变，不承诺高于连续 gzip。
-- GitHub 代码仓库远端及索引已发布 tag 均核验；未创建新 tag 或推送。发布前需移除开发 replace、发布依赖并重新验证。
+| 公共模块 | 正式版本 |
+| --- | --- |
+| timer | v1.5.2 |
+| log | v1.5.19 |
+| http | v1.5.18 |
+| redis | v1.5.24 |
+| js | v1.5.19 |
+| mail | v1.5.10 |
+| starter | v1.5.16 |
+| task | v1.5.17 |
+| db | v1.5.26 |
+| api | v1.5.23 |
+| discover | v1.5.23 |
+| service | v1.5.54 |
+| gateway | v1.5.28 |
 
-可选外部集成测试按各模块原有环境要求跳过；本地测试通过不等于全部外部服务场景已执行。
+Timer/Log 并发与归档测试、关键代理竞态在开发验证阶段通过；覆盖字典配对/损坏、截断恢复、并发追加、日期分割跟随及完整 TraceID。发布验证再次执行正式依赖下的完整测试和基准；可选外部环境测试按原规则跳过，不代表已执行全部外部集成。
+
+独立消费程序仅依赖正式 Service v1.5.54、无 replace，照 README 使用 log.SetDefaultConfig + service.Start；构建后 server log -tail 1 -json 正确读取当天压缩文件并保留 TraceID，不启动业务监听。
+
+10,000 条样本无丢失：原文 3,698,890 字节；连续 gzip 127,008；独立 gzip 块 147,006；本方案数据 135,748 + 字典 4,859 = 140,607。字典压缩收益依负载而变，不承诺优于连续 gzip；块结构支持跳过旧块 tail 和追加恢复。
+
+源码、版本索引、正式依赖与远端 tag 一并对齐；历史验证证据中的旧域名不作为现行模块路径。
