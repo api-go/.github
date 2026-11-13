@@ -97,7 +97,7 @@ Secret management and cross-language encryption tool.
 - **Exports and storage**: preserve 12–16 byte IVs in all five languages; Go directly sets default AES (register observers during package variable initialization). Strict keystore authentication, confined paths, exclusive key creation and Unix 0600 secret files.
 - **Library additions**: `RemoveKeystore`, `KeySet.SourceFingerprint`. Windows agent/library cross-compile; the CLI remains blocked by shell v1.5.8 platform isolation.
 
-### go/log v1.5.19
+### go/log v1.5.20
 - **Query API**: `QueryOptions`, `LogPath`, `DefaultConfig`, `Query`, `QueryFile`, `FormatStream`, `FormatArchiveStream`, `RunCommand`, `FileWriter.Err`, `Config.NoCompress`.
 Meta-driven asynchronous logging.
 - **API**: `Debug`, `Info`, `Warning`, `Error`, `As`, `New`, `NewLogger`, `SetDefaultConfig`, `SetDefaultName`, `Viewable`, `ToJSON`, `GetEntry`, `WithEntry`, `RegisterType`, `GetMeta`, `LoadMeta`, `SetMetaFilePath`, `Marshal`, `RegisterWriterMaker`, `AddStdLogFilter`, `SetStdLogOutput`, `GetDroppedLogs`, `WriterService.Start`, `WriterService.Stop`, `WriterService.Status`
@@ -161,7 +161,7 @@ Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 Service discovery and load balancing.
 - **API**: `Init`, `Start`, `Stop`, `Wait`, `EasyStart`, `NewCaller`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Caller.Open`, `Caller.OpenContext`, `Caller.WebSocketClient`, `AddExternalApp`, `GetAppNodes`, `SetNode`, `SetLoadBalancer`, `SetRoute`, `SetHTTPClient`, `Caller.DoRequest`, `HealthPath`, `HealthHandler`, `SetHealthHandler`, `Middleware`, `PrepareRequest`, `NodeInfo.State`
 
-### go/service v1.5.54
+### go/service v1.5.55
 - **Logging**: `ServiceConfig.CompactProxyLog` (default false), `ProxyLog`; service.Start/starter.Start expose embedded log/logv. Static and business RequestLog remain enabled.
 - **v1.5.22**: asynchronous Discover startup/cleanup integration; registration readiness is separate from worker startup. Development uses explicit Discover/Redis replacements; released and downstream upgraded.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
@@ -232,3 +232,8 @@ Logs default to independently compressed blocks and a per-file .dict. Retain, tr
 Use service.Start() or starter.Start() for command dispatch; AsyncStart alone does not dispatch. Put business initialization in lifecycle Start hooks. Business services retain RequestLog, Discover retains outbound CallLog, and Gateway uses compact ProxyLog for proxies while preserving static RequestLog. Failures include bounded sanitized details; use the injected logger to preserve TraceID.
 
 Integration examples: [Service README](https://github.com/api-go/service/blob/v1.5.54/README.en.md). Verification: [TEST.md](../TEST.md).
+
+
+## 2026-11-13 日志更新
+
+Log v1.5.20、Service v1.5.55：默认彩色可视化，-json 无 ANSI；`./server log -tail -f -json` 默认最近 100 条并跟随。压缩仅用于文件写入，控制台和其他写入器不压缩。

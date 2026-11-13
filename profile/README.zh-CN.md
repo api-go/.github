@@ -96,7 +96,7 @@
 - **导出与存储**：五种语言保留 12～16 字节 IV；Go 直接设置默认 AES（观察者需在包变量初始化时注册）。严格密钥认证、目录边界约束、独占创建及 Unix 0600 敏感文件权限。
 - **新增 Library API**：`RemoveKeystore`、`KeySet.SourceFingerprint`。Windows 代理和库可交叉编译，CLI 仍受 shell v1.5.8 平台隔离问题阻塞。
 
-### go/log v1.5.19
+### go/log v1.5.20
 - **Query API**: `QueryOptions`, `LogPath`, `DefaultConfig`, `Query`, `QueryFile`, `FormatStream`, `FormatArchiveStream`, `RunCommand`, `FileWriter.Err`, `Config.NoCompress`.
 高性能 Meta 驱动的异步脱敏日志。
 - **API**: `Debug`, `Info`, `Warning`, `Error`, `As`, `New`, `NewLogger`, `SetDefaultConfig`, `SetDefaultName`, `Viewable`, `ToJSON`, `GetEntry`, `WithEntry`, `RegisterType`, `GetMeta`, `LoadMeta`, `SetMetaFilePath`, `Marshal`, `RegisterWriterMaker`, `AddStdLogFilter`, `SetStdLogOutput`, `GetDroppedLogs`, `WriterService.Start`, `WriterService.Stop`, `WriterService.Status`
@@ -160,7 +160,7 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 极简的服务发现与负载均衡调用。
 - **API**: `Init`, `Start`, `Stop`, `Wait`, `EasyStart`, `NewCaller`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Caller.Open`, `Caller.OpenContext`, `Caller.WebSocketClient`, `AddExternalApp`, `GetAppNodes`, `SetNode`, `SetLoadBalancer`, `SetRoute`, `SetHTTPClient`, `Caller.DoRequest`, `HealthPath`, `HealthHandler`, `SetHealthHandler`, `Middleware`, `PrepareRequest`, `NodeInfo.State`
 
-### go/service v1.5.54
+### go/service v1.5.55
 - **Logging**: `ServiceConfig.CompactProxyLog` (default false), `ProxyLog`; service.Start/starter.Start expose embedded log/logv. Static and business RequestLog remain enabled.
 - **v1.5.22**: asynchronous Discover startup/cleanup integration; registration readiness is separate from worker startup. Development uses explicit Discover/Redis replacements; released and downstream upgraded.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
@@ -229,3 +229,8 @@ Log v1.5.19 / Starter v1.5.16 / Discover v1.5.23 / Service v1.5.54 / Gateway v1.
 通过 service.Start() 或 starter.Start() 获得命令分流；AsyncStart 单独使用不提供该入口。业务依赖初始化放到生命周期 Start，避免读日志时启动业务。业务服务保留 RequestLog，Discover 出站 CallLog；Gateway 纯代理使用精简 ProxyLog、失败增加有界脱敏诊断，静态文件仍有 RequestLog。使用请求注入的 Logger 续传同一 TraceID。
 
 接入示例和完整规范：[Service README](https://github.com/api-go/service/blob/v1.5.54/README.md)。正式验证：[TEST.md](../TEST.md)。
+
+
+## 2026-11-13 日志更新
+
+Log v1.5.20、Service v1.5.55：默认彩色可视化，-json 无 ANSI；`./server log -tail -f -json` 默认最近 100 条并跟随。压缩仅用于文件写入，控制台和其他写入器不压缩。
