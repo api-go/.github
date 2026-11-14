@@ -41,7 +41,8 @@ High-concurrency random generation.
 Standard and integer encoding.
 - **API**: `Hex`, `UnHex`, `Base64`, `UnBase64`, `Base64Raw`, `URLBase64`, `UnURLBase64`, `URLBase64Raw`, `URLEncode`, `UnURLEncode`, `HTMLEscape`, `HTMLUnescape`, `UTF8Valid`, `NewIntEncoder`, `EncodeInt`, `AppendInt`, `DecodeInt`, `ExchangeInt`, `FillInt`, `HashInt`, `FoldInt`, `SortJoin`
 
-### go/js v1.5.19
+### go/js v1.5.20
+- **已发布 / Released v1.5.20**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 Named-function validation uses parsed syntax, preserving matching text in literals and comments.
 Lightweight low-code engine based on goja with automatic bridging and safe mode.
 - **API**: `Define`, `Call`, `CallContext`, `Doc`, `CheckVersion`, `FuncList`, `NewPool`, `Start`, `Stop`, `Status`
@@ -50,7 +51,8 @@ Lightweight low-code engine based on goja with automatic bridging and safe mode.
 Terminal styling and command execution.
 - **API**: `Run`, `RunCommand`, `Start`, `InteractiveRun`, `Pipeline`, `PipelineCommands`, `Style`, `StripANSI`, `Red`, `Green`, `Blue`, `Yellow`
 
-### go/safe v1.5.5
+### go/safe v1.5.6
+- **已发布 / Released v1.5.6**: SealSelfContained / OpenSelfContained: versioned authenticated self-contained obfuscation; all recovery material embedded, offline recovery possible.
 Memory protection and secure erasure.
 - **API**: `NewSafeBuf`, `NewSafeString`, `LockMemory`, `UnlockMemory`, `DisableCoreDump`, `ZeroMemory`, `EncryptChaCha20`, `DecryptChaCha20`, `MakeSafeToken`, `Concat`, `Base64`, `Hex`, `UrlEncode`
 
@@ -58,38 +60,46 @@ Memory protection and secure erasure.
 Distributed and DB-optimized IDs.
 - **API**: `NewIDMaker`, `Get8Bytes4KPerSecond`, `Get9Bytes90KPerSecond`, `Get10Bytes14MPerSecond`, `Get11Bytes900MPerSecond`, `Get12BytesUltraPerSecond`, `GetForMysql`
 
-### go/crypto v1.5.10
+### go/crypto v1.5.11
+- **已发布 / Released v1.5.11**: SetDefaultAESFromSafeBuf: ownership transfers only on successful one-shot installation; errors retain caller ownership.
 - **v1.5.9**: `EncryptAutoIV`, `EncryptBytesAutoIV`, `EncryptAndEraseAutoIV`; AES-GCM writes `12-byte nonce || ciphertext || 16-byte tag`. Common Decrypt authenticates embedded-IV first, then legacy configured-IV; raw explicit-IV APIs and existing encryption remain unchanged. Optional `AutoIVCipher` preserves engine interface compatibility. Prefer automatic IVs for new data.
 Mainstream and hybrid encryption.
 - **API**: `NewAESGCM`, `NewRSA`, `NewECDSA`, `NewED25519`, `NewX25519`, `EncryptBytes`, `DecryptBytes`, `Sign`, `Verify`, `MD5`, `SHA1`, `SHA256`, `SHA512`, `HMACSHA256`
 
-### go/file v1.5.10
+### go/file v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 High-performance IO and memory files.
 - **API**: `Exists`, `EnsureParentDir`, `Read`, `ReadBytes`, `Write`, `WriteBytes`, `Copy`, `Move`, `Remove`, `Mkdir`, `Search`, `UnmarshalFile`, `MarshalFile`, `PatchFile`, `Archive`, `Compress`, `LoadFileToMemory`
 
-### go/config v1.5.9
+### go/config v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 Configuration loading with env overrides.
 - **API**: `Load`, `To`
 
-### go/crypto-sm v1.5.9
+### go/crypto-sm v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 National Cryptographic Standard (SM2/3/4).
 - **API**: `NewSM2`, `SM3`, `SM3ToHex`, `SM3ToBase64`, `SM3ToURLBase64`, `NewSM4CBC`, `NewSM4GCM`, `Encrypt`, `Decrypt`
 
-### go/document v1.5.10
+### go/document v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 Lean and high-performance Office bridge, supporting Excel/Word/PPT/PDF/Graph/CSV/MD to JSON/Markdown conversion.
 - **API**: `Open`, `Create`, `Save`, `ToJSON`, `ToMarkdown`, `ToMarkdownWithAssets`, `ReadText`
 
-### go/vision v1.5.9
+### go/vision v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 High-performance image processing, QR/Barcode, FFmpeg video orchestration, and transformations.
 - **API**: `Load`, `Save`, `Convert`, `New`, `ParseColor`, `RandColor`, `Capture`, `Recognize`, `GenerateImagePreview`, `GenerateVideoPreview`, `GenerateAudioPreview`, `NewAnimation`, `NewVideo`, `ProcessVideoFrames`
 
-### go/watch v1.5.11
+### go/watch v1.5.12
+- **已发布 / Released v1.5.12**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 AI-friendly file watching.
 - **API**: `Start`, `EasyStart`, `Watcher`
 - **CLI**: `watch` — 文件变更时执行命令，支持 `-go`/`-web`/`-js`/`-py` 预设
 
-### go/keys v1.5.12
+### go/keys v1.5.13
+- **已发布 / Released v1.5.13**: Go self-contained export; CLI help before authentication, --non-interactive, strict decryption and nonzero failures; LoadPasswordStrict.
 - **v1.5.11**: AES-GCM keystore/password/CLI/REPL writes use embedded random IVs, retaining legacy reads and export callbacks. CBC/SM4 formats unchanged. Release validation uses published crypto v1.5.9 and crypto-sm v1.5.8, without replacements. Upgrade receivers before enabling new writers.
 Secret management and cross-language encryption tool.
 - **CLI**: `keys list/create/remove`, `keys export <name> <language>`, `keys keep-key <name> [--ttl duration]`, `keys forget-key <name>` / `keys forget-key --all`, `keys <name> list/create/remove/encrypt/decrypt`.
@@ -97,43 +107,50 @@ Secret management and cross-language encryption tool.
 - **Exports and storage**: preserve 12–16 byte IVs in all five languages; Go directly sets default AES (register observers during package variable initialization). Strict keystore authentication, confined paths, exclusive key creation and Unix 0600 secret files.
 - **Library additions**: `RemoveKeystore`, `KeySet.SourceFingerprint`. Windows agent/library cross-compile; the CLI remains blocked by shell v1.5.8 platform isolation.
 
-### go/log v1.5.20
+### go/log v1.5.21
+- **已发布 / Released v1.5.21**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Query API**: `QueryOptions`, `LogPath`, `DefaultConfig`, `Query`, `QueryFile`, `FormatStream`, `FormatArchiveStream`, `RunCommand`, `FileWriter.Err`, `Config.NoCompress`.
 Meta-driven asynchronous logging.
 - **API**: `Debug`, `Info`, `Warning`, `Error`, `As`, `New`, `NewLogger`, `SetDefaultConfig`, `SetDefaultName`, `Viewable`, `ToJSON`, `GetEntry`, `WithEntry`, `RegisterType`, `GetMeta`, `LoadMeta`, `SetMetaFilePath`, `Marshal`, `RegisterWriterMaker`, `AddStdLogFilter`, `SetStdLogOutput`, `GetDroppedLogs`, `WriterService.Start`, `WriterService.Stop`, `WriterService.Status`
 - **File output**: defaults to compressed .gz/.dict pairs; NoCompress=true retains plain JSON arrays. Empty SplitTag uses a fixed file, otherwise files split by the tag. Synchronous flush outside service lifetime; buffered asynchronous writes while running.
 
-### go/http v1.5.18
+### go/http v1.5.19
+- **已发布 / Released v1.5.19**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **External address**: `ExternalAddressPolicy`, `NewExternalAddressResolver`, `ExternalAddressResolver.Prepare`, `RequestExternalAddress`, `PreparedExternalAddress`, `ExternalAddress.IsHTTPS/SameOrigin/RelayHeaders`. Default controlled-service Request-ID relay; optional Mode direct/trusted and direct-peer CIDRs. Paired single-value forwarding headers, pinned snapshots and structured Origin checks; Forwarded is unsupported. Request-ID is relay context, not authentication.
 - **JS request contract**: JS GET/DELETE retain response objects instead of entering the error-return slot; HTTP JS calls propagate cancellation and Multipart DELETE authorizes local files.
 - **WebSocket**: replace client WebSocket/WebSocketContext with Open/OpenContext, returning connection, handshake response and error; http.Header preserves multiple values. New Client.Clone, Client.WebSocketDialer and Client.SetWebSocketDialer support independent HTTP/1.1 dialing. Rejected bodies are capped and their lengths normalized.
 High-performance HTTP client.
 - **API**: `NewClient`, `NewClientH2C`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Do`, `DoContext`, `ManualDoContext`, `To`, `Open`, `OpenContext`, `Client.Clone`, `Client.WebSocketDialer`, `Client.SetWebSocketDialer`, `Client.SetWebSocketHTTP2`, `Client.SetWebSocketOptions`, `IsWebSocketRequest`, `UpgradeWebSocket`
 
-### go/mail v1.5.10
+### go/mail v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 Lean and high-performance email client.
 - **API**: `Send`, `MustSend`, `Recv`, `MustRecv`, `New`, `MustNew`, `NewWithConfig`, `GetMailbox`, `ParseAddr`, `FormatAddr`
 
-### go/task v1.5.17
+### go/task v1.5.18
+- **已发布 / Released v1.5.18**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Task scheduling and lifecycle management.
 - **API**: `Add`, `Scheduler.Start`, `Scheduler.Stop`, `Get`, `List`, `Remove`, `Run`, `WithPolicy`, `WithTimeout`, `NewScheduler`, `WithLogger`, `Logger`, `State`, `Snapshot`, `Disable`, `Enable`, `Config.FailureRetryDelay`, `Snapshot.RetryAt`
 - **Library**: `github.com/api-go/task/queue`: `Add`, `Fetch`, `FetchDecoded`, `Finish`, `AddAfter`, `Retry`, `Fail`, `Stats`, `PeekFailed`
 
-### go/redis v1.5.24
+### go/redis v1.5.25
+- **已发布 / Released v1.5.25**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **v1.5.22**: Redis.StartAsync provides nonblocking subscription recovery; Stop cancels reconnect waits; reset callbacks run outside locks after acknowledgement; PUBLISH reports zero-subscriber success.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Redis client with Pub/Sub.
 - **API**: `GetRedis`, `NewRedis`, `Do`, `Subscribe`, `PUBLISH`, `NewIDMaker`, `SetConfig`, `SetConfigIfAbsent`, `ZRangeByScore`
 - **ID restart handling**: named pool replacement discards cached reservations before allocation; retaining business data requires retained Redis counters.
 
-### go/starter v1.5.16
+### go/starter v1.5.17
+- **已发布 / Released v1.5.17**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Built-in commands**: `log` (default -tail 100 -f) and `logv`; dispatched before lifecycle startup, custom AddCommand can override.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Service lifecycle and background management.
 - **API**: `Register`, `Start`, `Wait`, `SetAppInfo`, `SetUsage`, `AddCommand`, `AddRemoteCommand`, `OnStarting`, `OnStarted`, `OnStopping`, `OnStopped`
 
-### go/api v1.5.23
+### go/api v1.5.24
+- **已发布 / Released v1.5.24**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Released patch: dynamic Action configuration stays out of provider payloads; inherited explicit payload defaults and caller fields remain intact.
 **WebSocket**: managed WebSocket uses HTTP OpenContext and closes handshake responses.
@@ -141,7 +158,8 @@ Third-party API orchestration engine.
 - Explicit CallOptions.Mode=mock uses declared test fixtures without networking; MockInputError identifies rejected test inputs; simulated results never imply delivery.
 - **API**: `Call`, `CallBy`, `Load`, `RegisterAction`, `RemoveAction`, `RegisterSigner`, `RegisterJSSigner`, `GetSigner`, `RemoveSigner`, `RegisterFilter`, `RegisterJSFilter`, `RemoveFilter`, `ParseActionYAML`, `PatchActionTokens`, `ConvertActionJSONToYAML`, `ModelConfigured`, `Action`, `CallOptions`, `MockInputError`, `Result`
 
-### go/db v1.5.26
+### go/db v1.5.27
+- **已发布 / Released v1.5.27**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 - **API**: `GetDB`, `Sync`, `To`, `ToSlice`, `Insert`, `Replace`, `Update`, `Delete`, `Query`, `Exec`, `Begin`, `SetConfig`
@@ -150,7 +168,8 @@ Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 - Fixed CHAR/BPCHAR string results remove right storage padding; leading whitespace and VARCHAR/TEXT trailing spaces remain unchanged.
 - PostgreSQL schema reconciliation: reconcile generated ordinary/unique indexes atomically, including hashed long names; preserve constraint-backed and externally named indexes. No public API change.
 
-### go/discover v1.5.23
+### go/discover v1.5.24
+- **已发布 / Released v1.5.24**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **v1.5.21**：Go 及 Python/Node.js/Java/Ruby/常驻 PHP 异步启动恢复任务；Start 表示任务启动，IsRegistered/isRegistered 单独表示注册状态；周期快照补偿通知丢失，默认服务端健康未注册时 503。调用失败只影响本地评分，不删除全局注册。使用显式本地 Redis replace，已发布并升级下游。
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
 - **External context**: `PrepareExternalRequest` explicitly prepares native ingress with HTTP policy. Normalized browser context is relayed separately from RPC destinations, credentials and TLS; raw legacy context is not trusted evidence. No default Origin relay.
@@ -161,7 +180,8 @@ Convention-over-configuration ORM with shadow-delete, auto-versioning, and FTS.
 Service discovery and load balancing.
 - **API**: `Init`, `Start`, `Stop`, `Wait`, `EasyStart`, `NewCaller`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Caller.Open`, `Caller.OpenContext`, `Caller.WebSocketClient`, `AddExternalApp`, `GetAppNodes`, `SetNode`, `SetLoadBalancer`, `SetRoute`, `SetHTTPClient`, `Caller.DoRequest`, `HealthPath`, `HealthHandler`, `SetHealthHandler`, `Middleware`, `PrepareRequest`, `NodeInfo.State`
 
-### go/service v1.5.55
+### go/service v1.5.56
+- **已发布 / Released v1.5.56**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Logging**: `ServiceConfig.CompactProxyLog` (default false), `ProxyLog`; service.Start/starter.Start expose embedded log/logv. Static and business RequestLog remain enabled.
 - **v1.5.22**: asynchronous Discover startup/cleanup integration; registration readiness is separate from worker startup. Development uses explicit Discover/Redis replacements; released and downstream upgraded.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.
@@ -179,7 +199,8 @@ Core microservice framework.
 - **Ingress**: `Handler`, `SetRequestGate`, `SetClientIPPolicy`, `RelayClientIP`, `PrepareHostPolicy`, `ReplaceHostPolicies`, `SetCertificateProvider`; request-pinned managed policies and explicit proxy CIDR trust. Legacy internal relay remains the default.
 - **API**: `Start`, `AsyncStart`, `Host`, `Register`, `Restful`, `RegisterWebsocket`, `Static`, `Proxy`, `VerifyStruct`, `GetInjectT`
 
-### go/gateway v1.5.28
+### go/gateway v1.5.29
+- **已发布 / Released v1.5.29**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Host trash**: Delete moves complete records into shared persistent trash; restore reactivates the original publication while preserving drafts, with conflict checks and monotonic revisions. Purge only accepts trashed records. Redacted listings, encrypted credentials, CAS convergence, restart/recovery, scoped APIs and explicit confirmations.
 - **ACL**: Scope + Allow alternatives, default deny within scope, OR grants and AND overlapping scopes; summary lists with transactional rule dialogs, neutral empty ACL paths, generated ACL/rate summaries and stable IDs. NewACL / ACL.Evaluate / ACLRule / ACLGrant / ACLDecision; legacy development policies remain compatible. Gateway remains L7-only.
 - **AES-GCM compatibility**: Released dependencies select crypto v1.5.9; shared symmetric decryption accepts embedded random IVs and legacy configured IVs. Existing public APIs remain unchanged.

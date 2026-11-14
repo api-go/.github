@@ -41,7 +41,8 @@
 标准及整数填充编解码。
 - **API**: `Hex`, `UnHex`, `Base64`, `UnBase64`, `Base64Raw`, `URLBase64`, `UnURLBase64`, `URLBase64Raw`, `URLEncode`, `UnURLEncode`, `HTMLEscape`, `HTMLUnescape`, `UTF8Valid`, `NewIntEncoder`, `EncodeInt`, `AppendInt`, `DecodeInt`, `ExchangeInt`, `FillInt`, `HashInt`, `FoldInt`, `SortJoin`
 
-### go/js v1.5.19
+### go/js v1.5.20
+- **已发布 / Released v1.5.20**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 按解析后的语法检查命名函数，不再误拒绝字符串、注释、模板和正则中的相同文本。
 基于 goja 的轻量级低代码引擎，支持自动桥接与安全模式。
 - **API**: `Define`, `Call`, `CallContext`, `Doc`, `CheckVersion`, `FuncList`, `NewPool`, `Start`, `Stop`, `Status`
@@ -50,7 +51,8 @@
 终端样式美化与命令链管道执行。
 - **API**: `Run`, `RunCommand`, `Start`, `InteractiveRun`, `Pipeline`, `PipelineCommands`, `Style`, `StripANSI`, `Red`, `Green`, `Blue`, `Yellow`
 
-### go/safe v1.5.5
+### go/safe v1.5.6
+- **已发布 / Released v1.5.6**: SealSelfContained / OpenSelfContained：带版本与认证的自包含混淆，恢复材料全部内嵌，可离线恢复。
 内存保护、安全擦除与防核心转储。
 - **API**: `NewSafeBuf`, `NewSafeString`, `LockMemory`, `UnlockMemory`, `DisableCoreDump`, `ZeroMemory`, `EncryptChaCha20`, `DecryptChaCha20`, `MakeSafeToken`, `Concat`, `Base64`, `Hex`, `UrlEncode`
 
@@ -58,37 +60,45 @@
 分布式与数据库性能优化的 ID 生成。
 - **API**: `NewIDMaker`, `Get8Bytes4KPerSecond`, `Get9Bytes90KPerSecond`, `Get10Bytes14MPerSecond`, `Get11Bytes900MPerSecond`, `Get12BytesUltraPerSecond`, `GetForMysql`
 
-### go/crypto v1.5.10
+### go/crypto v1.5.11
+- **已发布 / Released v1.5.11**: SetDefaultAESFromSafeBuf：成功安装才转移所有权，错误时调用方保留；共用一次性设置限制。
 - **v1.5.9**：新增 `EncryptAutoIV`、`EncryptBytesAutoIV`、`EncryptAndEraseAutoIV`，AES-GCM 输出 `[12 字节随机 IV][密文][16 字节 tag]`。公共解密先认证新格式再用原 IV 兼容旧格式；原加密和底层显式 IV API 不变。可选 `AutoIVCipher` 保持旧算法接口兼容，新数据推荐自动 IV。
 主流加解密算法与混合加密体系。
 - **API**: `NewAESGCM`, `NewRSA`, `NewECDSA`, `NewED25519`, `NewX25519`, `EncryptBytes`, `DecryptBytes`, `Sign`, `Verify`, `MD5`, `SHA1`, `SHA256`, `SHA512`, `HMACSHA256`
 
-### go/file v1.5.10
+### go/file v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 高性能磁盘 IO 与嵌入式内存文件。
 - **API**: `Exists`, `EnsureParentDir`, `Read`, `ReadBytes`, `Write`, `WriteBytes`, `Copy`, `Move`, `Remove`, `Mkdir`, `Search`, `UnmarshalFile`, `MarshalFile`, `PatchFile`, `Archive`, `Compress`, `LoadFileToMemory`
 
-### go/config v1.5.9
+### go/config v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 支持环境变量覆盖的配置文件加载。
 - **API**: `Load`, `To`
 
-### go/crypto-sm v1.5.9
+### go/crypto-sm v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 国密 (SM2/3/4) 标准实现。
 - **API**: `NewSM2`, `SM3`, `SM3ToHex`, `SM3ToBase64`, `SM3ToURLBase64`, `NewSM4CBC`, `NewSM4GCM`, `Encrypt`, `Decrypt`
 
-### go/document v1.5.10
+### go/document v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 极简、高效的 Office 文档桥梁，支持 Excel/Word/PPT/PDF/Graph/CSV/MD 与 JSON/Markdown 互转。
 - **API**: `Open`, `Create`, `Save`, `ToJSON`, `ToMarkdown`, `ToMarkdownWithAssets`, `ReadText`
 
-### go/vision v1.5.9
+### go/vision v1.5.10
+- **已发布 / Released v1.5.10**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 高性能图像处理、二维码/条码、FFmpeg 视频编排与媒体预览工具。
 - **API**: `Load`, `Save`, `Convert`, `New`, `ParseColor`, `RandColor`, `Capture`, `Recognize`, `GenerateImagePreview`, `GenerateVideoPreview`, `GenerateAudioPreview`, `NewAnimation`, `NewVideo`, `ProcessVideoFrames`
 
-### go/watch v1.5.11
+### go/watch v1.5.12
+- **已发布 / Released v1.5.12**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 高性能、AI 友好的文件变动监听。
 - **API**: `Start`, `EasyStart`, `Watcher`
 
-### go/keys v1.5.12
+### go/keys v1.5.13
+- **已发布 / Released v1.5.13**: Go 自包含导出；CLI 认证前帮助、--non-interactive、严格解密和非零失败退出；新增 LoadPasswordStrict。
 - **v1.5.11**: AES-GCM 密钥文件、密码文件、CLI/REPL 写入随机 IV 新格式，兼容旧读取和导出回调；CBC/SM4 不变。使用正式 crypto v1.5.9、crypto-sm v1.5.8 验证，无 replace；须先升级接收端。
 密钥管理与跨语言加固加密工具。
 - **CLI 命令**：`keys list/create/remove`、`keys export <名> <语言>`、`keys keep-key <名> [--ttl 时长]`、`keys forget-key <名>` / `keys forget-key --all`、`keys <名> list/create/remove/encrypt/decrypt`。
@@ -96,43 +106,50 @@
 - **导出与存储**：五种语言保留 12～16 字节 IV；Go 直接设置默认 AES（观察者需在包变量初始化时注册）。严格密钥认证、目录边界约束、独占创建及 Unix 0600 敏感文件权限。
 - **新增 Library API**：`RemoveKeystore`、`KeySet.SourceFingerprint`。Windows 代理和库可交叉编译，CLI 仍受 shell v1.5.8 平台隔离问题阻塞。
 
-### go/log v1.5.20
+### go/log v1.5.21
+- **已发布 / Released v1.5.21**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Query API**: `QueryOptions`, `LogPath`, `DefaultConfig`, `Query`, `QueryFile`, `FormatStream`, `FormatArchiveStream`, `RunCommand`, `FileWriter.Err`, `Config.NoCompress`.
 高性能 Meta 驱动的异步脱敏日志。
 - **API**: `Debug`, `Info`, `Warning`, `Error`, `As`, `New`, `NewLogger`, `SetDefaultConfig`, `SetDefaultName`, `Viewable`, `ToJSON`, `GetEntry`, `WithEntry`, `RegisterType`, `GetMeta`, `LoadMeta`, `SetMetaFilePath`, `Marshal`, `RegisterWriterMaker`, `AddStdLogFilter`, `SetStdLogOutput`, `GetDroppedLogs`, `WriterService.Start`, `WriterService.Stop`, `WriterService.Status`
 - **文件输出**：默认 `.gz` + `.dict` 实时压缩，NoCompress=true 保留旧 JSON 数组明文；空 SplitTag 使用固定文件，非空按标签分割。服务启停外同步刷新，运行中异步缓冲写入。
 
-### go/http v1.5.18
+### go/http v1.5.19
+- **已发布 / Released v1.5.19**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **External address**: `ExternalAddressPolicy`, `NewExternalAddressResolver`, `ExternalAddressResolver.Prepare`, `RequestExternalAddress`, `PreparedExternalAddress`, `ExternalAddress.IsHTTPS/SameOrigin/RelayHeaders`. Default controlled-service Request-ID relay; optional Mode direct/trusted and direct-peer CIDRs. Paired single-value forwarding headers, pinned snapshots and structured Origin checks; Forwarded is unsupported. Request-ID is relay context, not authentication.
 - **JS 请求契约**：JS GET/DELETE 保留结果对象并传播请求取消；DELETE Multipart 检查文件授权。
 - **WebSocket**：客户端 WebSocket/WebSocketContext 改为 Open/OpenContext，返回连接、握手响应、错误；http.Header 保留多值。新增 Client.Clone、WebSocketDialer、SetWebSocketDialer，支持独立 HTTP/1.1 配置；拒绝正文有限保留并归一化长度。
 极致精简的高性能 HTTP 客户端。
 - **API**: `NewClient`, `NewClientH2C`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Do`, `DoContext`, `ManualDoContext`, `To`, `Open`, `OpenContext`, `Client.Clone`, `Client.WebSocketDialer`, `Client.SetWebSocketDialer`, `Client.SetWebSocketHTTP2`, `Client.SetWebSocketOptions`, `IsWebSocketRequest`, `UpgradeWebSocket`
 
-### go/mail v1.5.10
+### go/mail v1.5.11
+- **已发布 / Released v1.5.11**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 极致精简的高性能邮件客户端。
 - **API**: `Send`, `MustSend`, `Recv`, `MustRecv`, `New`, `MustNew`, `NewWithConfig`, `GetMailbox`, `ParseAddr`, `FormatAddr`
 
-### go/task v1.5.17
+### go/task v1.5.18
+- **已发布 / Released v1.5.18**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 轻量级任务调度与生命周期管理。
 - **API**: `Add`, `Scheduler.Start`, `Scheduler.Stop`, `Get`, `List`, `Remove`, `Run`, `WithPolicy`, `WithTimeout`, `NewScheduler`, `WithLogger`, `Logger`, `State`, `Snapshot`, `Disable`, `Enable`, `Config.FailureRetryDelay`, `Snapshot.RetryAt`
 - **队列库**: `github.com/api-go/task/queue`: `Add`, `Fetch`, `FetchDecoded`, `Finish`, `AddAfter`, `Retry`, `Fail`, `Stats`, `PeekFailed`
 
-### go/redis v1.5.24
+### go/redis v1.5.25
+- **已发布 / Released v1.5.25**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **v1.5.22**: Redis.StartAsync provides nonblocking subscription recovery; Stop cancels reconnect waits; reset callbacks run outside locks after acknowledgement; PUBLISH reports zero-subscriber success.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 集成 Pub/Sub 的高性能 Redis 客户端。
 - **API**: `GetRedis`, `NewRedis`, `Do`, `Subscribe`, `PUBLISH`, `NewIDMaker`, `SetConfig`, `SetConfigIfAbsent`, `ZRangeByScore`
 - **ID 重建边界**: 命名连接池替换后丢弃旧预留序号；业务数据保留时，Redis ID 计数器也必须保留。
 
-### go/starter v1.5.16
+### go/starter v1.5.17
+- **已发布 / Released v1.5.17**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Built-in commands**: `log` (default -tail 100 -f) and `logv`; dispatched before lifecycle startup, custom AddCommand can override.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 服务生命周期与后台运行管控。
 - **API**: `Register`, `Start`, `Wait`, `SetAppInfo`, `SetUsage`, `AddCommand`, `AddRemoteCommand`, `OnStarting`, `OnStarted`, `OnStopping`, `OnStopped`
 
-### go/api v1.5.23
+### go/api v1.5.24
+- **已发布 / Released v1.5.24**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 已发布修订：动态 Action 配置不混入供应商请求体，保留继承的显式 payload 默认值及调用方业务字段。
 **WebSocket**: managed WebSocket uses HTTP OpenContext and closes handshake responses.
@@ -141,7 +158,8 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 第三方 API 调度引擎，消除 SDK 摩擦。
 - **API**: `Call`, `CallBy`, `Load`, `RegisterAction`, `RemoveAction`, `RegisterSigner`, `RegisterJSSigner`, `GetSigner`, `RemoveSigner`, `RegisterFilter`, `RegisterJSFilter`, `RemoveFilter`, `ParseActionYAML`, `PatchActionTokens`, `ConvertActionJSONToYAML`, `ModelConfigured`, `Action`, `CallOptions`, `MockInputError`, `Result`
 
-### go/db v1.5.26
+### go/db v1.5.27
+- **已发布 / Released v1.5.27**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 意图优先的极简数据库抽象层，支持影子删除与自动版本。
 - **API**: `GetDB`, `Sync`, `To`, `ToSlice`, `Insert`, `Replace`, `Update`, `Delete`, `Query`, `Exec`, `Begin`, `SetConfig`
@@ -150,7 +168,8 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 - PostgreSQL Schema 同步：按原始生成命名（含长名称 hash）事务同步普通/唯一索引，保护约束支撑及外部命名索引；公开 API 不变。
 - 固定 CHAR/BPCHAR 查询字符串去除右侧存储补空格；前导空白、VARCHAR/TEXT 尾空格保留。
 
-### go/discover v1.5.23
+### go/discover v1.5.24
+- **已发布 / Released v1.5.24**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **v1.5.21**：Go 及 Python/Node.js/Java/Ruby/常驻 PHP 异步启动恢复任务；Start 表示任务启动，IsRegistered/isRegistered 单独表示注册状态；周期快照补偿通知丢失，默认服务端健康未注册时 503。调用失败只影响本地评分，不删除全局注册。使用显式本地 Redis replace，已发布并升级下游。
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
 - **External context**: `PrepareExternalRequest` explicitly prepares native ingress with HTTP policy. Normalized browser context is relayed separately from RPC destinations, credentials and TLS; raw legacy context is not trusted evidence. No default Origin relay.
@@ -160,7 +179,8 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 极简的服务发现与负载均衡调用。
 - **API**: `Init`, `Start`, `Stop`, `Wait`, `EasyStart`, `NewCaller`, `Get`, `Post`, `Put`, `Delete`, `Head`, `Caller.Open`, `Caller.OpenContext`, `Caller.WebSocketClient`, `AddExternalApp`, `GetAppNodes`, `SetNode`, `SetLoadBalancer`, `SetRoute`, `SetHTTPClient`, `Caller.DoRequest`, `HealthPath`, `HealthHandler`, `SetHealthHandler`, `Middleware`, `PrepareRequest`, `NodeInfo.State`
 
-### go/service v1.5.55
+### go/service v1.5.56
+- **已发布 / Released v1.5.56**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Logging**: `ServiceConfig.CompactProxyLog` (default false), `ProxyLog`; service.Start/starter.Start expose embedded log/logv. Static and business RequestLog remain enabled.
 - **v1.5.22**: asynchronous Discover startup/cleanup integration; registration readiness is separate from worker startup. Development uses explicit Discover/Redis replacements; released and downstream upgraded.
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
@@ -176,7 +196,8 @@ CallOptions.Mode=mock 使用声明的测试输入/应答，零网络调用，明
 核心微服务框架。
 - **API**: `Start`, `AsyncStart`, `Host`, `Register`, `Restful`, `RegisterWebsocket`, `Static`, `Proxy`, `VerifyStruct`, `GetInjectT`
 
-### go/gateway v1.5.28
+### go/gateway v1.5.29
+- **已发布 / Released v1.5.29**: safe v1.5.6 / crypto v1.5.11 dependency alignment; published dependencies, no local replacements.
 - **Host 回收站**：删除保留完整草稿/发布/历史与加密凭据；恢复原发布配置并保留独立草稿，冲突拒绝、修订号递增；仅回收站可永久删除。复用共享状态 CAS、同步、重启/灾后恢复、脱敏与按 Host 授权 API。
 - **ACL**：Scope 保护范围 + Allow 放行条件，范围内默认拒绝、放行 OR、重叠范围 AND；规则摘要列表与独立编辑弹窗、中立的空 ACL 路径、ACL/限流自动摘要与稳定 ID。NewACL / ACL.Evaluate / ACLRule / ACLGrant / ACLDecision，兼容旧开发规则。Gateway 保持纯 L7。
 - **AES-GCM 兼容性**：正式依赖选中 crypto v1.5.9，共享对称解密支持随机 IV 新格式和原固定 IV 格式，原公开 API 不变。
